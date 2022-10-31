@@ -13,5 +13,11 @@ pipeline {
       }
     }
 
+    stage('Docker build') {
+      steps {
+        sh 'docker build -t pavlo-grynenko-image'
+      }
+    }
+
   }
 }
