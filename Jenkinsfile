@@ -1,5 +1,7 @@
 pipeline {
+  
   agent any
+  
   environment {
     DOCKERHUB_CREDENTIALS=credentials('docker-hub')
   }
@@ -23,9 +25,15 @@ pipeline {
       }
     }
 
-    stage('Login') {
+    stage('Docker Login') {
       steps {
 	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+      }
+    }
+
+    stage('Docker Push') {
+      steps {
+        sh 'docker push pavlogrynenko/pavlo-grynenko-image:latest'
       }
     }
   }
