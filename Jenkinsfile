@@ -18,14 +18,5 @@ pipeline {
         sh 'docker build -t pavlo-grynenko-image .'
       }
     }
-
-    stage('Docker push image') {
-      steps {
-	docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-		app.push("${env.BUILD_NUMBER}")
-		app.push("latest")
-	}
-      }
-    }
   }
 }
