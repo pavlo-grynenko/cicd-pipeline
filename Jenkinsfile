@@ -21,7 +21,7 @@ pipeline {
 
     stage('Docker build') {
       steps {
-        sh 'docker build -t pavlo-grynenko-image .'
+        sh 'docker build -t pavlogrynenko/cicd-pipeline:latest .'
       }
     }
 
@@ -33,7 +33,7 @@ pipeline {
 
     stage('Docker Push') {
       steps {
-        sh 'docker push pavlogrynenko/pavlo-grynenko-image:latest'
+        sh 'docker push pavlogrynenko/cicd-pipeline:latest'
       }
     }
   }
