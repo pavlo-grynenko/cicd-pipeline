@@ -19,20 +19,15 @@ pipeline {
       }
     }
 
-    stage('Docker build') {
+    stage('Docker Build') {
       steps {
         sh 'docker build -t pavlogrynenko/cicd-pipeline:latest .'
       }
     }
 
-    stage('Docker Login') {
-      steps {
-	sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-      }
-    }
-
     stage('Docker Push') {
       steps {
+        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'        
         sh 'docker push pavlogrynenko/cicd-pipeline:latest'
       }
     }
